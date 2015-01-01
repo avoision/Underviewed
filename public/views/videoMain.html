@@ -1,0 +1,68 @@
+      <!-- UV Header -->
+      <div class="uvHeader container" ng-controller="HeaderController as header">
+        <div class="videoReset">
+          <button type="button" class="btn btn-default btn-lg refreshBtn" ng-click="header.retrieveVideoSet()"><i class="fa fa-refresh"></i>See More Videos</button>
+        </div>
+        <div video-search-term></div>
+      </div>
+      
+      <!-- Page Body -->
+      <div class="uvBody container"> 
+
+        <!-- Thumbnail Navigation -->
+        <div class="thumbNav clearfix" ng-controller="ThumbnavController as thumbnav">
+          <div ng-repeat="vid in thumbnav.currentVideoSet">
+            <div thumbnail-pic></div>
+          </div>
+
+          <!-- Swing and a Miss -->
+          <div class="container missing" ng-show="thumbnav.empty" ng-controller="SwingMissController as swing">
+            <img src="img/swingMiss.jpg" class="swingMissPic img-responsive" ng-click="swing.retrieveVideoSet()">
+            <p class="swingMissText">{{ swing.consolation }} <br class="visible-xs"/><a href="" class="tryAgain" ng-click="swing.retrieveVideoSet()">Try again.</a></p>
+          </div>
+        </div>
+
+        <div class="quotationsAdCombo container" ng-controller="QuoteController as quote" ng-show="quote.thumbsReady">
+          <!-- Quotations -->
+          <div class="quotations">
+            <p class="quotation">{{ quote.quote }}</p>
+            <p class="author"><a href="{{ quote.url }}" target="_blank">&mdash; {{ quote.author }}</a></p>
+            <div class="quotationsBg"></div>
+          </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="ModalController as modal" ng-keydown="modal.escapeButton($event)" data-backdrop="static" >
+          <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="modalCloseBtn" type="button" data-dismiss="modal" ng-click="modal.clearCurrentVideo()"><i class="fa fa-times"></i></button>
+                <div class="alert {{ modal.modalClass }}" role="alert">
+                  <strong>{{ modal.rarityStart }}</strong> {{ modal.rarityDescription }}</div>
+              </div>
+
+              <div class="modal-body">
+                <iframe width="100%" height="100%" ng-src="{{ modal.currentVideoURL }}" frameborder="0" allowfullscreen></iframe>
+
+                <!-- Details -->
+                <div class="videoDetails">
+                  <div class="vidViews">Views: {{ modal.currentVideoViews }}</div>
+
+                  <div class="socialRow">
+                    <div>
+                      <button type="button" ng-click="modal.openSocial(modal.FB)" class="facebook btn"><i class="fa fa-facebook"></i></button>
+                      <button type="button" ng-click="modal.openSocial(modal.TW)" class="twitter btn"><i class="fa fa-twitter"></i></button>
+                      <button type="button" ng-click="modal.openSocial(modal.RD)" class="reddit btn"><i class="fa fa-reddit"></i></button>
+                      <button type="button" ng-click="modal.openSocial(modal.GP)" class="google btn"><i class="fa fa-google-plus"></i></button>
+                      <button type="button" ng-click="modal.openSocial(modal.YT)" class="youtube btn"><i class="fa fa-youtube-play"></i></button>
+                    </div>
+                    <div class="uvLink"><a href="{{ modal.LK}}">{{ modal.LK }}</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Page Body -->
