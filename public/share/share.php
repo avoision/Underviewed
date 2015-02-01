@@ -29,6 +29,14 @@
         <!DOCTYPE html>
         <html>
             <head>
+                <!-- Twitter Card --> 
+                <meta name="twitter:card" content="photo" />
+                <meta name="twitter:site" content="@underviewed" />
+                <meta name="twitter:title" content="Underviewed: Real life, seldom seen." />
+                <meta name="twitter:image" content="<?php echo $imgPath; ?>" />
+                <meta name="twitter:url" content="http://underviewed.com/videos/<?php echo $ytid; ?>" />
+
+                <!-- Open Graph -->
                 <meta property="og:title" content="<?php echo $title; ?>" /> 
                 <meta property="og:type" content="website" /> 
                 <meta property="og:url" content="http://underviewed.com/videos/<?php echo $ytid; ?>" />
