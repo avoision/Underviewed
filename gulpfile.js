@@ -4,9 +4,17 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     ngAnnotate = require('gulp-ng-annotate'),
+    purify = require('gulp-purifycss'),
     uglify = require('gulp-uglifyjs'),
     paths = {
-        scripts: ['app/*.js']
+        scripts: ['app/*.js'],
+        css: ['./public/css/*.css'],
+        html: [
+        	'./public/index.html',
+        	'./public/js/*.js',
+        	'./public/share/share.php',
+        	'./public/views/*.html'
+        ]
 	};
 
 
@@ -29,4 +37,12 @@ gulp.task('js', function() {
 	.pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('default', ['lint', 'js']);
+// Purify CSS
+gulp.task('css', function() {
+	return gulp.src( paths.css )
+	.pipe(purify( paths.html ))
+	.pipe(gulp.dest('./public/css-purified/'));
+});
+
+
+gulp.task('default', ['lint', 'js', 'css']);
