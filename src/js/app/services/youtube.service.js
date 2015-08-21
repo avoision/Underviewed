@@ -42,7 +42,7 @@ function youtubeService ($http, $q, $rootScope, quoteService, socialService) {
 			+ '&part=' + searchPart
 			+ '&fields=' + searchFields
 			+ '&maxResults=' + maxResults
-			+ '&safeSearch=moderate' // moderate, none, strict 
+			+ '&safeSearch=strict' // moderate, none, strict 
 			+ '&order=' + 'date'; // viewCount or date
 	};
 

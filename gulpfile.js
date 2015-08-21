@@ -41,7 +41,7 @@ gulp.task('js', function() {
 gulp.task('css', function() {
 	return gulp.src( paths.css )
 	.pipe(purify( paths.html ))
-	.pipe(gulp.dest('./public/css-purified/'));
+	.pipe(gulp.dest('./public/css/'));
 });
 
 
